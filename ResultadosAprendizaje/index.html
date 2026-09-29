@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segmentación de Mercados - Tema Oscuro</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a; /* Fondo oscuro principal (slate-900) */
+        }
+
+        /* Smoke-in animation effect combining blur, opacity and slight translation */
+        @keyframes smokeIn {
+            0% {
+                opacity: 0;
+                filter: blur(12px);
+                transform: translateY(20px) scale(0.95);
+            }
+            50% {
+                opacity: 0.5;
+                filter: blur(6px);
+                transform: translateY(10px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0px);
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .card-item {
+            opacity: 0;
+        }
+        .card-item.active {
+            animation: smokeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-8 m-0">
+
+    <!-- Contenedor centralizador que agrupa instrucción, carrusel y controles juntos -->
+    <div class="w-full max-w-2xl mx-auto flex flex-col items-center">
+
+        <!-- Instrucción flotante superior (Tema Oscuro) -->
+        <div class="mb-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#134e4a]/60 border border-[#2dd4bf]/40 text-[#5eead4] text-sm font-medium shadow-sm text-center">
+            <span>💡</span> Haga clic sobre los botones para ampliar la información.
+        </div>
+
+        <!-- Contenedor del Carrusel Vertical ajustado para mostrar 2 elementos (altura fija de 240px) -->
+        <div class="w-full relative overflow-hidden rounded-3xl py-1 h-[240px] flex items-center justify-center">
+            <div id="carouselTrack" class="w-full absolute top-0 left-0 transition-transform duration-500 ease-out flex flex-col items-center">
+                
+                <!-- Página / Grupo 1 (Elementos 1 y 2) -->
+                <div class="w-full flex-shrink-0 py-2 flex flex-col justify-center h-[240px] gap-3">
+                    <div class="card-item bg-[#1e293b] border-2 border-[#2dd4bf]/50 rounded-2xl p-5 shadow-lg w-full flex items-center h-[105px]">
+                        <p class="text-[#f1f5f9] text-base sm:text-lg leading-relaxed text-left font-medium">
+                            Analizar los fundamentos de la segmentación de mercados y el comportamiento del cliente como soporte para la formulación de estrategias de marketing.
+                        </p>
+                    </div>
+                    <div class="card-item bg-[#1e293b] border-2 border-[#2dd4bf]/50 rounded-2xl p-5 shadow-lg w-full flex items-center h-[105px]">
+                        <p class="text-[#f1f5f9] text-base sm:text-lg leading-relaxed text-left font-medium">
+                            Evaluar segmentos de mercado mediante variables y criterios de segmentación para identificar oportunidades comerciales.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Página / Grupo 2 (Elementos 3 y 4) -->
+                <div class="w-full flex-shrink-0 py-2 flex flex-col justify-center h-[240px] gap-3">
+                    <div class="card-item bg-[#1e293b] border-2 border-[#2dd4bf]/50 rounded-2xl p-5 shadow-lg w-full flex items-center h-[105px]">
+                        <p class="text-[#f1f5f9] text-base sm:text-lg leading-relaxed text-left font-medium">
+                            Diseñar estrategias de segmentación, selección de mercado objetivo y posicionamiento acordes con las características de organizaciones del sector de la construcción.
+                        </p>
+                    </div>
+                    <div class="card-item bg-[#1e293b] border-2 border-[#2dd4bf]/50 rounded-2xl p-5 shadow-lg w-full flex items-center h-[105px]">
+                        <p class="text-[#f1f5f9] text-base sm:text-lg leading-relaxed text-left font-medium">
+                            Interpretar el comportamiento del cliente y el proceso de decisión de compra para apoyar la formulación de estrategias comerciales y de relacionamiento con el mercado.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Navigation Controls (Tema Oscuro) -->
+        <div class="w-full flex items-center justify-between mt-5 px-2">
+            <button id="prevBtn" onclick="prevSlide()" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm border border-slate-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Anterior
+            </button>
+
+            <span id="pageIndicator" class="text-sm font-semibold text-slate-400 tracking-wider">1 de 2</span>
+
+            <button id="nextBtn" onclick="nextSlide()" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-600 text-white font-medium hover:bg-teal-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm">
+                Siguiente
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const totalSlides = 2; // 2 grupos de 2 elementos cada uno
+
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('pageIndicator');
+        const slideGroups = track.children;
+
+        function updateCarousel() {
+            const slideHeight = 240; // Altura exacta del contenedor de cada grupo de 2
+            track.style.transform = `translateY(-${currentIndex * slideHeight}px)`;
+            
+            pageIndicator.textContent = `${currentIndex + 1} de ${totalSlides}`;
+
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === totalSlides - 1;
+
+            // Activar la animación de humo en las tarjetas del grupo actual
+            Array.from(slideGroups).forEach((group, index) => {
+                const cardsInGroup = group.querySelectorAll('.card-item');
+                cardsInGroup.forEach(card => {
+                    if (index === currentIndex) {
+                        card.classList.remove('active');
+                        void card.offsetWidth; // Forzar reflow
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        function nextSlide() {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateCarousel();
+        });
+    </script>
+
+</body>
+</html>
