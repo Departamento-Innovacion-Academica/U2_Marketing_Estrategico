@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factores Personales en el Comportamiento del Cliente</title>
+    <!-- Importación de la fuente Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #054C50; /* Verde institucional */
+            --primary-hover: #033437;
+            --bg-light: #E8F3F3;       /* Verde menta claro para filas alternadas */
+            --bg-white: #ffffff;
+            --text-color: #2c3e50;
+            --border-color: #D2E5E6;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f8f8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 12px 40px rgba(5, 76, 80, 0.12);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--bg-white);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: fixed;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        td {
+            padding: 16px 20px;
+            font-size: 14px;
+            color: var(--text-color);
+            line-height: 1.5;
+            vertical-align: middle;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- CONTROL DE PROPORCIONES Y ALINEACIONES (3 COLUMNAS) --- */
+        /* Columna 1: Factor */
+        th:nth-child(1), td:nth-child(1) { 
+            width: 24%; 
+            font-weight: 600;
+            color: #111111;
+            text-align: left;
+            border-left: none;
+        }
+
+        /* Columna 2: Influencia en el comportamiento del cliente */
+        th:nth-child(2), td:nth-child(2) { 
+            width: 39%; 
+            text-align: left;
+        }
+
+        /* Columna 3: Ejemplo en el sector de la construcción */
+        th:nth-child(3), td:nth-child(3) { 
+            width: 37%; 
+            text-align: left;
+            border-right: none;
+        }
+
+        /* Separadores entre encabezados */
+        th:nth-child(1), th:nth-child(2) { 
+            border-right: 1px solid rgba(255, 255, 255, 0.2); 
+        }
+
+        /* Alternancia de color en las filas */
+        tbody tr:nth-child(odd) td {
+            background-color: var(--bg-white);
+        }
+        tbody tr:nth-child(even) td {
+            background-color: var(--bg-light);
+        }
+
+        /* --- KEYFRAMES EFECTO LÁTIGO (WHIP EFFECT) --- */
+        @keyframes whipRow {
+            0% {
+                opacity: 0;
+                transform: translateX(-120px) scaleX(1.15) skewX(12deg);
+            }
+            60% {
+                opacity: 1;
+                transform: translateX(20px) scaleX(0.92) skewX(-4deg);
+            }
+            80% {
+                transform: translateX(-8px) scaleX(1.03) skewX(1.5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scaleX(1) skewY(0deg);
+            }
+        }
+
+        tbody tr {
+            opacity: 0;
+            animation: whipRow 0.75s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        /* Retrasos secuenciales para las 5 filas */
+        tbody tr:nth-child(1) { animation-delay: 0.08s; }
+        tbody tr:nth-child(2) { animation-delay: 0.16s; }
+        tbody tr:nth-child(3) { animation-delay: 0.24s; }
+        tbody tr:nth-child(4) { animation-delay: 0.32s; }
+        tbody tr:nth-child(5) { animation-delay: 0.40s; }
+
+        /* Efecto Hover interactivo */
+        tbody tr:hover td {
+            background-color: rgba(5, 76, 80, 0.08) !important;
+            transition: background-color 0.15s ease;
+            cursor: default;
+        }
+
+        /* --- SECCIÓN DE CONTROLES --- */
+        .controls-container {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #076469 0%, #054C50 100%);
+            color: #ffffff;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 25px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            box-shadow: 0 4px 15px rgba(5, 76, 80, 0.25);
+        }
+
+        .play-btn .icon {
+            font-size: 13px;
+            transition: transform 0.2s ease;
+        }
+
+        .play-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #097B81 0%, #033437 100%);
+            box-shadow: 0 6px 20px rgba(5, 76, 80, 0.35);
+        }
+
+        .play-btn:hover .icon {
+            transform: scale(1.15);
+        }
+
+        .play-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(5, 76, 80, 0.2);
+        }
+
+        .hint {
+            font-size: 13.5px;
+            color: #555555;
+            background-color: #ffffff;
+            padding: 6px 18px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #dce8e8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>FACTOR</th>
+                    <th>INFLUENCIA EN EL COMPORTAMIENTO DEL CLIENTE</th>
+                    <th>EJEMPLO EN EL SECTOR DE LA CONSTRUCCIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Fila 1 -->
+                <tr>
+                    <td>Edad y ciclo de vida</td>
+                    <td>Las necesidades y prioridades cambian según la etapa de vida del consumidor.</td>
+                    <td>Familias jóvenes buscan viviendas con posibilidad de crecimiento; adultos mayores priorizan accesibilidad y seguridad.</td>
+                </tr>
+                <!-- Fila 2 -->
+                <tr>
+                    <td>Ocupación</td>
+                    <td>Influye en las necesidades funcionales y en el tipo de inmueble requerido.</td>
+                    <td>Un empresario puede demandar oficinas, mientras que un profesional independiente busca espacios para trabajo en casa.</td>
+                </tr>
+                <!-- Fila 3 -->
+                <tr>
+                    <td>Situación económica</td>
+                    <td>Determina la capacidad de compra y el presupuesto disponible.</td>
+                    <td>Selección entre vivienda VIS, vivienda de nivel medio o proyectos de alta gama.</td>
+                </tr>
+                <!-- Fila 4 -->
+                <tr>
+                    <td>Estilo de vida</td>
+                    <td>Refleja las actividades, intereses y preferencias del consumidor.</td>
+                    <td>Clientes que prefieren conjuntos con zonas verdes, espacios deportivos o áreas para teletrabajo.</td>
+                </tr>
+                <!-- Fila 5 -->
+                <tr>
+                    <td>Personalidad y valores</td>
+                    <td>Influyen en la importancia otorgada a atributos como innovación, sostenibilidad o exclusividad.</td>
+                    <td>Consumidores que valoran viviendas sostenibles, tecnología inteligente o diseños arquitectónicos modernos.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Contenedor con elementos de control -->
+    <div class="controls-container">
+        <button class="play-btn" id="restartBtn" title="Reiniciar animación">
+            <span class="icon">▶</span>
+            <span>Reiniciar</span>
+        </button>
+        <div class="hint">Haga clic sobre el botón "▶" para reiniciar la animación.</div>
+    </div>
+
+    <!-- Script JavaScript para reinicio de animación -->
+    <script>
+        function triggerWhipAnimation() {
+            const tableContainer = document.querySelector('.table-container');
+            
+            tableContainer.style.display = 'none';
+            void tableContainer.offsetWidth; 
+            tableContainer.style.display = 'block';
+        }
+
+        document.getElementById('restartBtn').addEventListener('click', triggerWhipAnimation);
+    </script>
+</body>
+</html>
